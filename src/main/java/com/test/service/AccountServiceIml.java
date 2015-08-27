@@ -1,5 +1,6 @@
 package com.test.service;
  
+import java.io.ObjectInputStream.GetField;
 import java.util.List;
  
 import javax.annotation.PostConstruct;
@@ -18,7 +19,7 @@ import com.test.dao.UserDao;
  *且有一个set方法，此set方法由spring 容器注入使用，如果没有回报错，
  *这是spring容器依赖注入的一种方法--setter注入
  */
-public class UserServiceIml implements UserService,InitializingBean,DisposableBean,SmartLifecycle{
+public class AccountServiceIml implements AccountService,InitializingBean,DisposableBean,SmartLifecycle{
   
    private volatile boolean isRunning = false;
    private UserDao userDao;
@@ -117,7 +118,7 @@ public class UserServiceIml implements UserService,InitializingBean,DisposableBe
    }
      
    public int getPhase() {
-      return 0;
+      return 100;
    }
   
   

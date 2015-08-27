@@ -17,15 +17,32 @@
     </bean>
    
      <!-- 配置scope为 prototype，测试只执行初始化函数，不执行析构 -->
-     <bean id="user2" class="com.test.service.UserServiceIml" scope="prototype">
+    <bean id="user2" class="com.test.service.UserServiceIml" scope="prototype">
         <property name="userDao" ref="userDao"></property>
     </bean>
  
      <!-- 以下测试 depend-on -->
     <bean id="t1" class="com.test.service.Test1" depends-on="t2">
     </bean>
-   
     <bean id="t2" class="com.test.service.Test2" >
     </bean>
+    
+<!--  accountServiceIml的配置 -->
+     <!-- 配置自己的初始化和析构，覆盖默认配置 -->
+    <bean id="account0" class="com.test.service.AccountServiceIml" init-method="testInit" destroy-method="testBeforeDesstroy">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+     <!-- 采用默认配置的初始化和析构 -->
+     <bean id="account1" class="com.test.service.AccountServiceIml">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+   
+     <!-- 配置scope为 prototype，测试只执行初始化函数，不执行析构 -->
+    <bean id="account2" class="com.test.service.AccountServiceIml" scope="prototype">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+    
+   
+   
     
 </beans>
